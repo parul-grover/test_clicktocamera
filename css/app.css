@@ -1,0 +1,25 @@
+nav{
+	/*background-color: rgba(0, 0, 0, 0.69) !important;*/
+	background-color: rgba(11, 167, 167, 0.68) !important;
+}
+
+nav .brand-logo{
+	margin-left: 10px;
+}
+.card-title{
+	padding: 0 20px;
+}
+
+.card-title span{
+	color: green;
+	display: block;
+}
+
+.card .card-content {
+	padding: 5px 20px;
+}
+
+.card img {
+    display: inline !important;
+    max-width: 200px;
+}
