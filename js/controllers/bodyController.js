@@ -1,13 +1,15 @@
 define('bodyController',['angular','sweet-alert','app','dataFactory',
-	'contenteditableDirective'], function(angular, swal){
+	'offsetFilter'], function(angular, swal){
 
 	angular.module('app').controller('bodyController',['$scope','dataFactory',
 		 function($scope, dataFactory){
 		$scope.currentPage = 1;
+		$scope.pageSize = 30;
 		$scope.fnGetComments = function(issueObj){
 			
 			var commentsURL = repoIssueURL+'/'+issueObj.number+'/comments';
 			dataFactory.getDataFromBackend(commentsURL).then(function(data){
+					
 					issueObj.commentsArray = data;
 					
 				},function(err){
@@ -16,7 +18,8 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 		};
 
 		$scope.fnChangePage = function(){
-			fnCheckValidURL();
+			$scope.currentOffset = $scope.pageSize * ($scope.currentPage - 1); 
+			window.scrollTo(0,0);
 		};
 
 		var fnCheckValidURL = function(){
@@ -24,17 +27,27 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 				var partURL = $scope.searchText.split('github.com/')[1];
 				repoURL = 'http://api.github.com/repos/' + partURL;
 				repoIssueURL = repoURL + '/issues' ;
-				filters = '?state=open&page=' + $scope.currentPage;
 				$scope.dataLoaded = false;
+				$scope.allIssues = [];
+
 				dataFactory.getDataFromBackend(repoURL).then(function(data){
 					$scope.repoDetails = data;
-				});
-				dataFactory.getDataFromBackend(repoIssueURL + filters).then(function(data){
-					$scope.dataLoaded = 'loaded';
-					$scope.allIssues = data;
-				},function(err){
-					$scope.dataLoaded = true;
-					swal('Error','Please enter a valid git url','error');
+					if(data.open_issues_count >0){
+						for(var i=0 ; i <= parseInt(data.open_issues_count / 100); i++){
+							var j = i;
+							var filters = '?state=open&per_page=100&page='+ (j+1);
+							
+							dataFactory.getDataFromBackend(repoIssueURL + filters).then(function(issueData){
+							
+								$scope.dataLoaded = 'loaded';
+								$scope.allIssues = $scope.allIssues.concat(issueData);
+								console.log($scope.allIssues);
+							},function(err){
+								$scope.dataLoaded = true;
+								swal('Error','Please enter a valid git url','error');
+							});
+						}
+					}
 				});
 			} else {
 				swal('Error','Please enter a valid git url','error');
@@ -43,6 +56,7 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 
 		$scope.fnCheckForEnter = function(event){
 			if(event.keyCode === 13){
+				// console.log($scope.searchText)
 				fnCheckValidURL();
 			}
 		};

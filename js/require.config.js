@@ -9,6 +9,7 @@ requirejs.config({
 		'sweet-alert':"js/sweetalert.min",
 		'roposoService':"js/service/roposoService",
 		'dataFactory' : 'js/factory/dataFactory',
+		'offsetFilter' : 'js/filter/offsetFilter',
 		'contenteditableDirective': 'js/directives/contenteditableDirective',
 		'bodyController': "js/controllers/bodyController"
     },

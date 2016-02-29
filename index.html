@@ -57,9 +57,12 @@
       </div>
       <div class="row" ng-show="dataLoaded=='loaded'">
         <div class="center"><h3>Issues in {{repoDetails.name}}</h3></div>
-        Total Issues: {{repoDetails.open_issues_count}}
+        
+        <span>Total Issues: {{repoDetails.open_issues_count}}</span>
+        <span class="right">Page {{currentPage}}</span>
+
         <ul class="collapsible popout" data-collapsible="accordion">
-          <li ng-repeat="obj in allIssues">
+          <li ng-repeat="obj in allIssues | offset:currentOffset | limitTo: pageSize">
             <div class="collapsible-header" ng-click="obj.comments >0 && fnGetComments(obj)"><i class="material-icons" >filter_drama</i>{{obj.title}}</div>
 
             <div class="collapsible-body">
@@ -84,10 +87,6 @@
         <div class="row center" ng-show="repoDetails.open_issues_count > 0">
          
           <pagination total-items="repoDetails.open_issues_count" ng-model="currentPage" ng-change="fnChangePage()" max-size="8" class="pagination-sm" boundary-links="true" items-per-page="30"></pagination>
-
-          <!-- <pagination total-items="repoDetails.open_issues_count" max-size="30" ng-model="currentPage" ng-change="pageChanged()"></pagination> -->
-
-          <!-- <pagination total-items="10" ng-model="bigCurrentPage" max-size="10" class="pagination-sm" boundary-links="true" rotate="false"></pagination> -->
 
         </div>  
       </div>
