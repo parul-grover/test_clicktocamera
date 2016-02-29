@@ -1,6 +1,6 @@
 define('contenteditableDirective',['angular','app'],function( angular ){
 
-	angular.module('roposoApp').directive('contenteditable', ['$sce', '$timeout',function($sce, $timeout) {
+	angular.module('app').directive('contenteditable', ['$sce', '$timeout',function($sce, $timeout) {
 	    return {
 	      restrict: 'A', // only activate on element attribute
 	      require: '?ngModel', // get a hold of NgModelController

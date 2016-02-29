@@ -23,7 +23,7 @@
   <body>
     <!-- Navbar start-->
     <nav>
-      <div class="nav-wrapper" ng-controller="headerController" ng-cloak>
+      <div class="nav-wrapper" ng-cloak>
         <a href="#" class="brand-logo"><img src="img/logo.png"></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li title="Add a card">
@@ -45,45 +45,42 @@
     <!-- Card Section Start-->    
     <div class="container ng-cloak" ng-controller="bodyController">
       <div class="card">
-      <div class="row">
-        <div class="input-field col s10 offset-s1">
-          <i style='margin-top:10px' class="large material-icons prefix">search</i>
-          <input id="icon_prefix" type="text" placeholder="Enter URL for public git repo and press enter" ng-model="searchText" ng-keyup="fnCheckForEnter($event)">
+        <div class="row" ng-init="searchText='https://github.com/ankurmittal092/testrepo'">
+          <div class="input-field col s10 offset-s1">
+            <i style='margin-top:10px' class="large material-icons prefix">search</i>
+            <input id="icon_prefix" type="text" placeholder="Enter URL for public git repo and press enter" ng-model="searchText" ng-keyup="fnCheckForEnter($event)">
+          </div>
         </div>
       </div>
-      </div>
-      <div class="row center">
+      <div class="row center" ng-init="dataLoaded=true" ng-show="!dataLoaded">
         <img src="img/Preloader_2.gif"/>
       </div>
-      <div class="row">
-        <table class="striped">
-        <thead>
-          <tr>
-              <th data-field="id">Name</th>
-              <th data-field="name">Item Name</th>
-              <th data-field="price">Item Price</th>
-          </tr>
-        </thead>
+      <div class="row" ng-show="dataLoaded=='loaded'">
+        <div class="center"><h1>Issues</h1></div>
+        Total Issues: {{repoDetails.open_issues_count}}
+        <ul class="collapsible popout" data-collapsible="accordion">
+          <li ng-repeat="obj in allIssues">
+            <div class="collapsible-header" ng-click="obj.comments >0 && fnGetComments(obj)"><i class="material-icons" >filter_drama</i>{{obj.title}}</div>
 
-        <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
-        </tbody>
-      </table>
+            <div class="collapsible-body">
+              <ul class="collection with-header">
+                <li class="collection-header" ng-if="obj.body"><b>Body: </b>{{obj.body}}</li>
+                <li class="collection-header" ng-if="obj.comments >0"><h6><b>Comments</b></h6> </li>
+                <li class="collection-header"  ng-if="obj.comments == 0"><h6><b>Comments:</b> No Comments to display</h6> </li>
+                
+                <li class="collection-item avatar" ng-if="obj.comments >0 && obj.commentsArray" ng-repeat="comment in obj.commentsArray">
+                  <img ng-src="{{comment.user.avatar_url}}" alt="" class="circle">
+                  <span class="title">{{comment.user.login}}</span> commented:
+                  <p>{{comment.body}}
+                  </p>
+                  <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+                </li>
+                <li class="collection-item row"><div class="col s10"><input placeholder="Comment.." /></div><div class="col s2"><input type="button" value="Post"></div></li>
+              </ul>
+            </div>
 
+          </li>
+        </ul>    
       </div>
     
        <div class="row">
@@ -116,6 +113,9 @@
     <script src="components/requirejs/require.js"></script>
     <script src="js/require.config.js"></script>
 	  <script src="js/pageJS/index.js"></script>
+    <script>
+      require(['materialize']);
+    </script>
     <!-- end scripts -->
   </body>
   <!-- end body content -->

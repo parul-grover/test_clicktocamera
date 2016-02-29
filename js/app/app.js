@@ -1,4 +1,4 @@
 define('app', ['angular'], function () {
 
-	var app = angular.module('roposoApp',[]);
+	var app = angular.module('app',[]);
 });
