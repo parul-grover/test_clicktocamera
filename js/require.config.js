@@ -5,6 +5,7 @@ requirejs.config({
         "jquery": "components/jquery/jquery.min",
 		"angular":"js/angular.min",
 		"app":"js/app/app",
+		'ui-bootstrap':'js/ui-bootstrap-tpls-0.12.0',
 		'sweet-alert':"js/sweetalert.min",
 		'roposoService':"js/service/roposoService",
 		'dataFactory' : 'js/factory/dataFactory',
@@ -15,6 +16,9 @@ requirejs.config({
     	"materialize": {
     		deps: ['jquery']
     	},
+    	'ui-bootstrap': {
+			deps: ['angular']
+		},
 		angular: {
 			exports: 'angular'			
 		}

@@ -3,13 +3,11 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 
 	angular.module('app').controller('bodyController',['$scope','dataFactory',
 		 function($scope, dataFactory){
-		
+		$scope.currentPage = 1;
 		$scope.fnGetComments = function(issueObj){
 			
 			var commentsURL = repoIssueURL+'/'+issueObj.number+'/comments';
 			dataFactory.getDataFromBackend(commentsURL).then(function(data){
-					console.log('commentsssssssssss')
-					console.log(data);
 					issueObj.commentsArray = data;
 					
 				},function(err){
@@ -17,18 +15,21 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 				});
 		};
 
+		$scope.fnChangePage = function(){
+			fnCheckValidURL();
+		};
+
 		var fnCheckValidURL = function(){
 			if( $scope.searchText.indexOf('github.com') >-1 && $scope.searchText.split('github.com/')[1]){
 				var partURL = $scope.searchText.split('github.com/')[1];
 				repoURL = 'http://api.github.com/repos/' + partURL;
 				repoIssueURL = repoURL + '/issues' ;
-				filters = '?state=open';
+				filters = '?state=open&page=' + $scope.currentPage;
 				$scope.dataLoaded = false;
 				dataFactory.getDataFromBackend(repoURL).then(function(data){
 					$scope.repoDetails = data;
 				});
-				dataFactory.getDataFromBackend(repoIssueURL+filters).then(function(data){
-					console.log(data);
+				dataFactory.getDataFromBackend(repoIssueURL + filters).then(function(data){
 					$scope.dataLoaded = 'loaded';
 					$scope.allIssues = data;
 				},function(err){
@@ -42,7 +43,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 
 		$scope.fnCheckForEnter = function(event){
 			if(event.keyCode === 13){
-				// console.log($scope.searchText)
 				fnCheckValidURL();
 			}
 		};

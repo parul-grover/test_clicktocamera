@@ -6,6 +6,21 @@ nav{
 nav .brand-logo{
 	margin-left: 10px;
 }
+
+.collapsible-header.ng-binding.active {
+    font-weight: bold;
+}
+
+.pagination li.active {
+    background-color: #4AB5B5 !important;
+}
+
+.pagination li {
+    font-size: inherit !important; 
+}
+   
+}
+
 .card-title{
 	padding: 0 20px;
 }
