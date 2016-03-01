@@ -79,7 +79,7 @@
                   </li>
                 </div>
 
-                <li class="collection-item row"><div class="col s10"><input ng-model="obj.commentText" placeholder="Comment.." /></div><div class="col s2"><input type="button" ng-click="fnPostComments(obj);" value="Post"></div></li>
+                <li class="collection-item row"><div class="col s10"><input ng-model="obj.commentText" placeholder="Comment.." ng-keyup="fnCheckForCommentEnter($event,obj)"/></div><div class="col s2"><input type="button" ng-click="fnPostComments(obj);" value="Post"></div></li>
               </ul>
             </div>
 

@@ -99,6 +99,12 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 				fnCheckValidURL();
 			}
 		};
+
+		$scope.fnCheckForCommentEnter = function(event, obj){
+			if(event.keyCode === 13){
+				$scope.fnPostComments(obj);
+			}
+		};
 		//--------END------//
 	}]);
 
