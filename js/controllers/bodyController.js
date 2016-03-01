@@ -78,9 +78,12 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 								$scope.allIssues = $scope.allIssues.concat(issueData);
 							},function(err){
 								$scope.dataLoaded = true;
-								swal('Error','Please enter a valid git url','error');
+								swal('Error','Something went wrong.','error');
 							});
 						}
+					} else {
+						$scope.dataLoaded = true;
+						swal('Oops','No open issues for this repo.','message','info');
 					}
 				},function(err){
 					$scope.dataLoaded = true;
