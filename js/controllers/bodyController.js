@@ -5,11 +5,50 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 		 function($scope, dataFactory){
 		$scope.currentPage = 1;
 		$scope.pageSize = 30;
+
+		// localStorage.setItem('allCardsData',JSON.stringify($scope.allCardsData));
+		// JSON.parse(localStorage.getItem('allCardsData')) 
+		$scope.fnPostComments = function(issueObj){
+			console.log('inside');
+			// console.log(issueObj.id, issueObj.test);
+			if(issueObj.commentText){
+				debugger;
+				var localComments = localStorage.getItem( issueObj.id)? JSON.parse(localStorage.getItem( issueObj.id)):[] ;
+				var commentObj = {
+					'user':{ 
+						'login':'localUser',
+						'avatar_url': 'https://avatars.githubusercontent.com/u/14919965?v=3'
+						},
+					'body': issueObj.commentText};
+
+				issueObj.comments++;
+
+				if(issueObj.localComments){
+					issueObj.localComments.push(commentObj);
+				} else {
+					issueObj.localComments = [commentObj];
+				}
+				
+				issueObj.commentText = '';
+				
+				localComments.push(commentObj);
+				localStorage.setItem(issueObj.id, JSON.stringify(localComments));
+			}
+		};
+		$scope.fnCheckLocalStorage = function(issueObj){
+			// console.log('inside teejjrjr',issueObj)
+			var localComments = localStorage.getItem( issueObj.id)? JSON.parse(localStorage.getItem( issueObj.id)):[] ;
+			
+			return localComments;
+
+			// return true;
+		};
+
 		$scope.fnGetComments = function(issueObj){
 			
 			var commentsURL = repoIssueURL+'/'+issueObj.number+'/comments';
 			dataFactory.getDataFromBackend(commentsURL).then(function(data){
-					
+					console.log(data);
 					issueObj.commentsArray = data;
 					
 				},function(err){
@@ -48,6 +87,10 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 							});
 						}
 					}
+				},function(err){
+					$scope.dataLoaded = true;
+					console.log(err);
+					swal('Error','Please enter a valid git url','error');
 				});
 			} else {
 				swal('Error','Please enter a valid git url','error');

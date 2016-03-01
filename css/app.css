@@ -18,8 +18,11 @@ nav .brand-logo{
 .pagination li {
     font-size: inherit !important; 
 }
-   
-}
+
+.collection .collection-item:last-child {
+     border-bottom: 1px solid #e0e0e0 !important; 
+}   
+
 
 .card-title{
 	padding: 0 20px;
