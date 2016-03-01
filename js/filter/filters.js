@@ -1,4 +1,4 @@
-define('offsetFilter',['app'],function(){
+define('filters',['app'],function(){
 	angular.module('app').filter('offset', function() {
 		return function(input, start) {
 			start = parseInt(start, 10);
@@ -10,7 +10,6 @@ define('offsetFilter',['app'],function(){
 			var prevDate = new Date();
 			prevDate.setDate(prevDate.getDate() - daysOffset);
 			
-			console.log( prevDate );
 			var filteredArr = []	
 
 			angular.forEach(input, function(element, index){

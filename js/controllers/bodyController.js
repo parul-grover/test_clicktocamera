@@ -1,11 +1,12 @@
 define('bodyController',['angular','sweet-alert','app','dataFactory',
-	'offsetFilter'], function(angular, swal){
+	'filters'], function(angular, swal){
 
 	angular.module('app').controller('bodyController',['$scope', '$timeout', '$filter' ,'dataFactory',
 		 function($scope, $timeout, $filter, dataFactory){
 		$scope.currentPage = 1;
 		$scope.pageSize = 30;
 
+		// function to post comments
 		$scope.fnPostComments = function(issueObj){
 			if(issueObj.commentText){
 				debugger;
@@ -31,6 +32,8 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 				localStorage.setItem(issueObj.id, JSON.stringify(localComments));
 			}
 		};
+
+		//function to check if comments for an issue are available in localstorage
 		$scope.fnCheckLocalStorage = function(issueObj){
 			var localComments = localStorage.getItem( issueObj.id)? JSON.parse(localStorage.getItem( issueObj.id)):[] ;
 			
@@ -38,6 +41,7 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 
 		};
 
+		//funciton to get comments for an issue.
 		$scope.fnGetComments = function(issueObj){
 			
 			var commentsURL = repoIssueURL+'/'+issueObj.number+'/comments';
@@ -49,11 +53,13 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 				});
 		};
 
+		//function called when page is changed
 		$scope.fnChangePage = function(){
 			$scope.currentOffset = $scope.pageSize * ($scope.currentPage - 1); 
 			window.scrollTo(0,0);
 		};
 
+		//function to check for the validity of a url
 		var fnCheckValidURL = function(){
 			if( $scope.searchText.indexOf('github.com') >-1 && $scope.searchText.split('github.com/')[1]){
 				var partURL = $scope.searchText.split('github.com/')[1];
@@ -97,12 +103,14 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 			}
 		};	
 
+		//funciton to check for enter
 		$scope.fnCheckForEnter = function(event){
 			if(event.keyCode === 13){
 				fnCheckValidURL();
 			}
 		};
 
+		//funciton to check for enter
 		$scope.fnCheckForCommentEnter = function(event, obj){
 			if(event.keyCode === 13){
 				$scope.fnPostComments(obj);
@@ -111,6 +119,7 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 		//--------END------//
 	}]);
 
+	//manual bootstraping of angular app
 	angular.element(document).ready(function(){
 		angular.bootstrap(document, ['app']);
 	});

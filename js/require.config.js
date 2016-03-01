@@ -8,7 +8,7 @@ requirejs.config({
 		'ui-bootstrap':'js/ui-bootstrap-tpls-0.12.0',
 		'sweet-alert':"js/sweetalert.min",
 		'dataFactory' : 'js/factory/dataFactory',
-		'offsetFilter' : 'js/filter/offsetFilter',
+		'filters' : 'js/filter/filters',
 		'contenteditableDirective': 'js/directives/contenteditableDirective',
 		'bodyController': "js/controllers/bodyController"
     },
