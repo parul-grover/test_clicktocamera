@@ -9,7 +9,6 @@ requirejs.config({
 		'sweet-alert':"js/sweetalert.min",
 		'dataFactory' : 'js/factory/dataFactory',
 		'filters' : 'js/filter/filters',
-		'contenteditableDirective': 'js/directives/contenteditableDirective',
 		'bodyController': "js/controllers/bodyController"
     },
     shim: {

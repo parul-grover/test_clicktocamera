@@ -9,7 +9,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 		// function to post comments
 		$scope.fnPostComments = function(issueObj){
 			if(issueObj.commentText){
-				debugger;
 				var localComments = localStorage.getItem( issueObj.id)? JSON.parse(localStorage.getItem( issueObj.id)):[] ;
 				var commentObj = {
 					'user':{ 
