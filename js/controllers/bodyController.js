@@ -1,13 +1,11 @@
 define('bodyController',['angular','sweet-alert','app','dataFactory',
 	'offsetFilter'], function(angular, swal){
 
-	angular.module('app').controller('bodyController',['$scope','dataFactory',
-		 function($scope, dataFactory){
+	angular.module('app').controller('bodyController',['$scope', '$timeout', '$filter' ,'dataFactory',
+		 function($scope, $timeout, $filter, dataFactory){
 		$scope.currentPage = 1;
 		$scope.pageSize = 30;
 
-		// localStorage.setItem('allCardsData',JSON.stringify($scope.allCardsData));
-		// JSON.parse(localStorage.getItem('allCardsData')) 
 		$scope.fnPostComments = function(issueObj){
 			if(issueObj.commentText){
 				debugger;
@@ -38,7 +36,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 			
 			return localComments;
 
-			// return true;
 		};
 
 		$scope.fnGetComments = function(issueObj){
@@ -76,6 +73,12 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 							
 								$scope.dataLoaded = 'loaded';
 								$scope.allIssues = $scope.allIssues.concat(issueData);
+								
+								$timeout(function() {
+									$scope.inOneDay = $filter('timeBasedFilter')($scope.allIssues,1);
+									$scope.in7Days = $filter('timeBasedFilter')($scope.allIssues,7);
+								}, 10);
+							
 							},function(err){
 								$scope.dataLoaded = true;
 								swal('Error','Something went wrong.','error');
