@@ -25,7 +25,7 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 		var fnCheckValidURL = function(){
 			if( $scope.searchText.indexOf('github.com') >-1 && $scope.searchText.split('github.com/')[1]){
 				var partURL = $scope.searchText.split('github.com/')[1];
-				repoURL = 'http://api.github.com/repos/' + partURL;
+				var repoURL = 'http://api.github.com/repos/' + partURL;
 				repoIssueURL = repoURL + '/issues' ;
 				$scope.dataLoaded = false;
 				$scope.allIssues = [];
