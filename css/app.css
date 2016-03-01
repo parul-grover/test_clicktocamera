@@ -21,23 +21,4 @@ nav .brand-logo{
 
 .collection .collection-item:last-child {
      border-bottom: 1px solid #e0e0e0 !important; 
-}   
-
-
-.card-title{
-	padding: 0 20px;
-}
-
-.card-title span{
-	color: green;
-	display: block;
-}
-
-.card .card-content {
-	padding: 5px 20px;
-}
-
-.card img {
-    display: inline !important;
-    max-width: 200px;
 }

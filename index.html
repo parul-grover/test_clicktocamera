@@ -34,7 +34,7 @@
     </nav>
     <!-- End-->
 
-    <!-- Card Section Start-->    
+    <!-- Issue list Section Start-->    
     <div class="container ng-cloak" ng-controller="bodyController">
       <div class="card">   <!-- https://github.com/ankurmittal092/testrepo -->
         <div class="row" ng-init="searchText='https://github.com/rubinius/rubinius'">
@@ -68,18 +68,17 @@
                   <span class="title">{{comment.user.login}}</span> commented:
                   <p>{{comment.body}}
                   </p>
-                  <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
                 </li>
+
                 <div ng-init="obj.localComments = fnCheckLocalStorage(obj);">
                   <li class="collection-item avatar" ng-repeat="comment in obj.localComments">
                     <img ng-src="{{comment.user.avatar_url}}" alt="" class="circle">
                     <span class="title">{{comment.user.login}}</span> commented:
                     <p>{{comment.body}}
                     </p>
-                    
-                    <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
                   </li>
                 </div>
+
                 <li class="collection-item row"><div class="col s10"><input ng-model="obj.commentText" placeholder="Comment.." /></div><div class="col s2"><input type="button" ng-click="fnPostComments(obj);" value="Post"></div></li>
               </ul>
             </div>

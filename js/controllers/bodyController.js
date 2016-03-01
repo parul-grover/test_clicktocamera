@@ -9,8 +9,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 		// localStorage.setItem('allCardsData',JSON.stringify($scope.allCardsData));
 		// JSON.parse(localStorage.getItem('allCardsData')) 
 		$scope.fnPostComments = function(issueObj){
-			console.log('inside');
-			// console.log(issueObj.id, issueObj.test);
 			if(issueObj.commentText){
 				debugger;
 				var localComments = localStorage.getItem( issueObj.id)? JSON.parse(localStorage.getItem( issueObj.id)):[] ;
@@ -36,7 +34,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 			}
 		};
 		$scope.fnCheckLocalStorage = function(issueObj){
-			// console.log('inside teejjrjr',issueObj)
 			var localComments = localStorage.getItem( issueObj.id)? JSON.parse(localStorage.getItem( issueObj.id)):[] ;
 			
 			return localComments;
@@ -48,7 +45,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 			
 			var commentsURL = repoIssueURL+'/'+issueObj.number+'/comments';
 			dataFactory.getDataFromBackend(commentsURL).then(function(data){
-					console.log(data);
 					issueObj.commentsArray = data;
 					
 				},function(err){
@@ -80,7 +76,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 							
 								$scope.dataLoaded = 'loaded';
 								$scope.allIssues = $scope.allIssues.concat(issueData);
-								console.log($scope.allIssues);
 							},function(err){
 								$scope.dataLoaded = true;
 								swal('Error','Please enter a valid git url','error');
@@ -89,7 +84,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 					}
 				},function(err){
 					$scope.dataLoaded = true;
-					console.log(err);
 					swal('Error','Please enter a valid git url','error');
 				});
 			} else {
@@ -99,7 +93,6 @@ define('bodyController',['angular','sweet-alert','app','dataFactory',
 
 		$scope.fnCheckForEnter = function(event){
 			if(event.keyCode === 13){
-				// console.log($scope.searchText)
 				fnCheckValidURL();
 			}
 		};
