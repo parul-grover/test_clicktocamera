@@ -6,8 +6,6 @@
     <meta name="viewport" id="view" content="width=device-width, initial-scale=1.0">
 
     <!--  Favicon -->
-  	<link rel="icon" href="img/favicon-32x32.png">
-
     <link href="css/app.css" rel="stylesheet" type="text/css">
    	<link href="components/materialize/css/materialize.min.css" rel="stylesheet" type="text/css">
     <link href="css/icon.css" rel="stylesheet">
@@ -24,20 +22,15 @@
     <!-- Navbar start-->
     <nav>
       <div class="nav-wrapper" ng-cloak>
-        <a href="#" class="brand-logo"><img src="img/logo.png"></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li title="Add a card">
-            <a href="http://cube26.com/" target="_blank"><i class="large material-icons">link</i></a>
-          </li>
-        </ul>
+        <a href="#" class="brand-logo">Git Repo Issue List</a>
       </div>
     </nav>
     <!-- End-->
 
-    <!-- Issue list Section Start-->    
+    <!-- Issue list Section Start https://github.com/rubinius/rubinius-->    
     <div class="container ng-cloak" ng-controller="bodyController">
       <div class="card">
-        <div class="row" ng-init="searchText='https://github.com/rubinius/rubinius'">
+        <div class="row" ng-init="searchText=''">
           <div class="input-field col s10 offset-s1">
             <i style='margin-top:10px' class="large material-icons prefix">search</i>
             <input id="icon_prefix" type="text" placeholder="Enter URL for public git repo and press enter" ng-model="searchText" ng-keyup="fnCheckForEnter($event)">
