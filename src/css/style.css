@@ -1,0 +1,17 @@
+.click-here {
+	font-size: 24px;
+    padding: 15px;
+    display: inline-block;
+    border: 1px solid #005cb9;
+    color: #005cb9;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.26);
+}
+
+.img-cont {
+margin-top: 15px;
+}
+.img-cont img{
+max-width: 100%;
+display: none;
+}

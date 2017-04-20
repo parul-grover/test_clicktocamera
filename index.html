@@ -5,24 +5,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
 	<title>Ankur's test page</title>
 </head>
-<style>
-	.click-here {
-		font-size: 24px;
-	    padding: 15px;
-	    display: inline-block;
-	    border: 1px solid #005cb9;
-	    color: #005cb9;
-	    border-radius: 3px;
-	    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.26);
-	}
-
-</style>
+<link rel="stylesheet" type="text/css"  href="src/css/style.css"/>
 <body>
-	<div>
-		<label for="uploadImage">
-	      	<span class="click-here">Tap here to click a picture</span>
-	     	<input type="file" accept="image/*" capture="camera" id="uploadImage" style="display:none">
-	    </label>
+	<div class="pg-body">
+    <div class="btn-cont">
+      <label for="uploadImage">
+        <span class="click-here">Tap here to click a picture</span>
+       	<input type="file" accept="image/*" capture="camera" id="uploadImage" style="display:none">
+      </label>
+    </div>
+    <div class="img-cont">
+      <img id="imgView" src="#" alt="your image" />
+    </div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
