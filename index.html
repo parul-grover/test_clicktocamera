@@ -8,19 +8,42 @@
 <link rel="stylesheet" type="text/css"  href="src/css/style.css"/>
 <body>
 	<div class="pg-body">
-    <div class="btn-cont">
-      <label for="uploadImage">
+    <div class="uploadBtnContJS upload-btn-cont">
+      <label for="uploadImageBtn" class="uploadBtnCont">
         <span class="click-here">Tap here to click a picture</span>
-       	<input type="file" accept="image/*" capture="camera" id="uploadImage" style="display:none">
+       	<input type="file" accept="image/*" capture="camera" id="uploadImageBtn" style="display:none">
       </label>
     </div>
     <div class="img-cont">
       <img id="imgView" src="#" alt="your image" />
+      <div class="actionsWrpJS actions-wrp">
+        <div class="acceptBtnJS accept">POST</div>
+        <div class="delBtnJS del">DELETE</div>
+      </div>
     </div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   	crossorigin="anonymous"></script>
-  	<script src="src/js/build.js"></script>
+  <script src="src/js/build.js"></script>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1909955622622279',
+        xfbml      : true,
+        version    : 'v2.9'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
 </body>
 </html>

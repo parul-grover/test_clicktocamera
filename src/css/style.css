@@ -1,3 +1,15 @@
+body {
+	margin: 0;
+}
+
+.pg-body {
+	padding: 15px;
+}
+
+.upload-btn-cont {
+	margin-bottom: 15px;
+}
+
 .click-here {
 	font-size: 24px;
     padding: 15px;
@@ -9,9 +21,34 @@
 }
 
 .img-cont {
-margin-top: 15px;
+	position: relative;
+	text-align: center;
 }
+
 .img-cont img{
-max-width: 100%;
-display: none;
+	max-width: 100%;
+	display: none;
+}
+
+.actions-wrp {
+	display: none;
+	position: absolute;
+	position: fixed;
+	bottom: 10px;
+	width: calc(100% - 30px);
+	text-align: center;
+}
+
+.actions-wrp div {
+	display: inline-block;
+}
+
+.accept, .del {
+    color: #fff;
+    background: black;
+    padding: 5px 10px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px #fafafa;
+
+
 }
