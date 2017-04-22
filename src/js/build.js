@@ -49,7 +49,7 @@ $(document).ready(function() {
 	           		postLinkHtml =  '<a href="'+ postLink +'" target="_blank">Click here to visit the created post</a>'
 
 	           		ldGifDOM.hide();
-	           		messageDivDOM.append('<div>Post successfully created.'+postLinkHtml+'</div>').show();
+	           		messageDivDOM.append('<div>Post created successfully. '+postLinkHtml+'</div>').show();
 	           }
 	       });
 	};
