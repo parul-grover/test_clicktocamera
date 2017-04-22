@@ -29,7 +29,6 @@ $(document).ready(function() {
 	};
 
 	var fnInitiateFacebookPostFlow = function(){
-		console.log('Conditions suitable to post to facebook.. lets begin', filesObj);
 
 		var postMSG="Posting this through test_App.";
 		var url='https://graph.facebook.com/me/photos?access_token='+ accessToken +'&message='+postMSG;
@@ -46,7 +45,6 @@ $(document).ready(function() {
 	           type: 'POST',
 
 	           success: function(data){
-	           		console.log('DATAAAAAA',data);
 	           		var postLink = "https://www.facebook.com/photo.php?fbid=" + data.id,
 	           		postLinkHtml =  '<a href="'+ postLink +'" target="_blank">Click here to visit the created post</a>'
 
@@ -89,7 +87,6 @@ $(document).ready(function() {
 	};
 
 	var acceptBtnClickHandler = function (){
-		console.log('++++ Calling accept button', filesObj);
 		loaderDOM.show();
 
 		FB.getLoginStatus(function (res) { 
@@ -107,7 +104,6 @@ $(document).ready(function() {
 	};
 
 	var deleteBtnClickHandler = function(){
-		console.log('---- Clicking reject button');
 		uploadBtnContDOM.show();
 		actionsWrpDOM.hide();
 		imgViewDOM.hide();
