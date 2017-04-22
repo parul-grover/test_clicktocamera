@@ -49,6 +49,27 @@ body {
     padding: 5px 10px;
     border-radius: 3px;
     box-shadow: 2px 2px 2px #fafafa;
+}
 
+.loader-wrp {
+	display: none;
+}
 
+.loader {
+    display: table;
+    width: calc(100% - 30px);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(255, 255, 255, 0.5)
+}
+
+.in {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.message-div {
+	display: none;
 }
