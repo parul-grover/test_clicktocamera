@@ -88,8 +88,16 @@ $(document).ready(function() {
 
 	var acceptBtnClickHandler = function (){
 		loaderDOM.show();
+		FB.login(function (res) { 
+			
+			accessToken = res.authResponse.accessToken;
+		    fncheckPermissions();
 
-		FB.getLoginStatus(function (res) { 
+		  },{scope: 'email,public_profile,user_friends,publish_actions',
+		    return_scopes: true
+		});
+		
+		/*FB.getLoginStatus(function (res) { 
 		  if(res.authResponse){
 		  	accessToken = res.authResponse.accessToken;
 		    fncheckPermissions();
@@ -100,7 +108,7 @@ $(document).ready(function() {
 		    console.log('Kindly request for permissions');
 		    fnRequestForPermission();
 		  }
-		});
+		});*/
 	};
 
 	var deleteBtnClickHandler = function(){
